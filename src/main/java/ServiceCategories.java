@@ -15,8 +15,11 @@ public class ServiceCategories {
 
     public JsonElement getCategorie(String id)
     {
+        categories=null;
+
         try {
             URL urlCat = new URL("https://api.mercadolibre.com/sites/" + id + "/categories");
+
             try {
                 URLConnection urlCatConnection = urlCat.openConnection();
                 urlCatConnection.setRequestProperty("Accept", "application/json");
@@ -34,8 +37,6 @@ public class ServiceCategories {
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         }
-
-
 
         return new Gson().toJsonTree(categories);
     }

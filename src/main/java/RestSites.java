@@ -1,5 +1,9 @@
+import response.StandarResponse;
+import response.StatusResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import services.ServiceCategories;
+import services.ServiceSites;
 
 import static spark.Spark.*;
 
@@ -23,7 +27,7 @@ public class RestSites {
             {
                 return new Gson().toJson(new StandarResponse(StatusResponse.SUCCESS, cat));
             }
-            return new Gson().toJson(new StandarResponse(StatusResponse.NOT_FOUND, "ID Site Not Found"));
+            return new Gson().toJson(new StandarResponse(StatusResponse.NOT_FOUND, "ID resourses.Site Not Found"));
         });
 
     }

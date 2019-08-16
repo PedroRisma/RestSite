@@ -1,3 +1,5 @@
+package resourses;
+
 public class Site implements Comparable<Site>{
 
     private String id;

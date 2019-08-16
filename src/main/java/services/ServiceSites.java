@@ -1,3 +1,5 @@
+package services;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
@@ -11,7 +13,7 @@ import java.net.URLConnection;
 
 public class ServiceSites {
 
-    private Site[] sites;
+    private resourses.Site[] sites;
 
 
     public ServiceSites()
@@ -27,7 +29,7 @@ public class ServiceSites {
 
                 BufferedReader inSite = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 Gson gsonSite = new Gson();
-                sites = gsonSite.fromJson(inSite, Site[].class);
+                sites = gsonSite.fromJson(inSite, resourses.Site[].class);
                 Operador<ServiceSites> operador = new Operador<ServiceSites>();
                 operador.bubbleSort(sites);
 
@@ -45,7 +47,7 @@ public class ServiceSites {
 
     public JsonElement getSites() { return new Gson().toJsonTree(sites);}
 
-    public Site getSite(int i)
+    public resourses.Site getSite(int i)
     {
         return sites[i];
     }

@@ -16,9 +16,8 @@ public class ServiceCategories {
 
     Categorie[] categories;
 
-    public JsonElement getCategorie(String id)
+    public Categorie[] getCategories(String id)
     {
-        categories=null;
 
         try {
             URL urlCat = new URL("https://api.mercadolibre.com/sites/" + id + "/categories");
@@ -32,6 +31,7 @@ public class ServiceCategories {
                 BufferedReader inCat = new BufferedReader(new InputStreamReader(httpURLConnectionCat.getInputStream()));
                 Gson gsonCat = new Gson();
                 categories = gsonCat.fromJson(inCat, Categorie[].class);
+                return categories;
 
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -40,8 +40,7 @@ public class ServiceCategories {
         } catch (MalformedURLException e) {
             System.out.println(e.getMessage());
         }
-
-        return new Gson().toJsonTree(categories);
+        return null;
     }
 
 

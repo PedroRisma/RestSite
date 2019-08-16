@@ -30,7 +30,7 @@ public class ServiceSites {
                 BufferedReader inSite = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                 Gson gsonSite = new Gson();
                 sites = gsonSite.fromJson(inSite, resourses.Site[].class);
-                Operador<ServiceSites> operador = new Operador<ServiceSites>();
+                Operador<ServiceSites> operador = new Operador<>();
                 operador.bubbleSort(sites);
 
             } catch (IOException e) {
@@ -46,11 +46,6 @@ public class ServiceSites {
     }
 
     public JsonElement getSites() { return new Gson().toJsonTree(sites);}
-
-    public resourses.Site getSite(int i)
-    {
-        return sites[i];
-    }
 
 
 }

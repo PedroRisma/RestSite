@@ -1,7 +1,5 @@
-import response.StandarResponse;
-import response.StatusResponse;
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
+import resourses.Categorie;
 import services.ServiceCategories;
 import services.ServiceSites;
 
@@ -11,23 +9,23 @@ public class RestSites {
 
     public static void main(String[] args) {
 
-        ServiceCategories categories = new ServiceCategories();
         ServiceSites sites = new ServiceSites();
         port(8082);
 
         get("/sites", ((request, response) -> {
             response.type("application/json");
-            return new Gson().toJsonTree(new StandarResponse(StatusResponse.SUCCESS, sites.getSites()));
+            return new Gson().toJsonTree(sites.getSites());
         }));
 
         get("/sites/:id/categories",  (request, response)->{
             response.type("application/json");
-            JsonElement cat = new ServiceCategories().getCategorie(request.params(":id"));
-            if (categories!=null)
+            Categorie[] cat = new ServiceCategories().getCategories(request.params(":id"));
+
+            if (cat!=null)
             {
-                return new Gson().toJson(new StandarResponse(StatusResponse.SUCCESS, cat));
+                return new Gson().toJsonTree(cat);
             }
-            return new Gson().toJson(new StandarResponse(StatusResponse.NOT_FOUND, "ID resourses.Site Not Found"));
+            return new Gson().toJson("ID resourses.Site Not Found");
         });
 
     }
